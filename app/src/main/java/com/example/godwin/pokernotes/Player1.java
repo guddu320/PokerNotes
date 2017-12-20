@@ -70,7 +70,7 @@ public class Player1 extends Fragment {
             SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
             String formattedDate = df.format(calendar.getTime());
             date.setText(formattedDate);
-            String formattedTime = Calendar.HOUR+": "+Calendar.MINUTE;
+            String formattedTime = Calendar.HOUR_OF_DAY + ": " + calendar.get(Calendar.MINUTE);
             if (calendar.get(Calendar.AM_PM) == Calendar.PM) {
                 formattedTime = formattedTime+" PM";
             }
