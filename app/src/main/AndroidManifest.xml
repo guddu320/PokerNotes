@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".Player1" />
         <activity android:name=".ViewFragment" />
-        <activity android:name=".ShowNotes"></activity>
+        <activity android:name=".ShowNotes" />
+        <activity android:name=".Player2"></activity>
     </application>
 
 </manifest>
