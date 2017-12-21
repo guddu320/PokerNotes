@@ -48,7 +48,7 @@ public class Storage extends SQLiteOpenHelper {
 
     public void deleteAllRecords(){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_NAME);
+        onUpgrade(db,1,2);
     }
 
 
