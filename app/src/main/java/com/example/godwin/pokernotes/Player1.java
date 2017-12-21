@@ -7,6 +7,7 @@ import android.app.FragmentTransaction;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import static android.content.ContentValues.TAG;
 
 public class Player1 extends Fragment {
     View view;
@@ -113,16 +116,17 @@ public class Player1 extends Fragment {
                     showMessage("Error", "Nothing found");
                     return;
                 }
-
+                Log.e(TAG, "String process started ");
                 String buffer = new String();
                 while (res.moveToNext()) {
-                    buffer.concat("Entry number :" + res.getString(0) + "\n");
-                    buffer.concat("Player :" + res.getString(1) + "\n");
-                    buffer.concat("Day :" + res.getString(2) + "\n");
-                    buffer.concat("Date :" + res.getString(3) + "\n");
-                    buffer.concat("Time :" + res.getString(4) + "\n");
-                    buffer.concat("Notes :" + res.getString(5) + "\n\n");
+                    buffer+="Entry number :" + res.getString(0) + "\n";
+                    buffer+="Player :" + res.getString(1) + "\n";
+                    buffer+="Day :" + res.getString(2) + "\n";
+                    buffer+="Date :" + res.getString(3) + "\n";
+                    buffer+="Time :" + res.getString(4) + "\n";
+                    buffer+="Notes :" + res.getString(5) + "\n\n";
                 }
+                Log.e(TAG, "String process ended\n"+buffer );
                 Bundle bundle = new Bundle();
                 bundle.putString("Info", buffer);
                 ShowNotes fragment = new ShowNotes();

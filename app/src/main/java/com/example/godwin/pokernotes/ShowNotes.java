@@ -3,10 +3,13 @@ package com.example.godwin.pokernotes;
 import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import static android.content.ContentValues.TAG;
 
 public class ShowNotes extends Fragment
 {
@@ -21,10 +24,12 @@ public class ShowNotes extends Fragment
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.activity_show_notes, container, false);
         details = (TextView)view.findViewById(R.id.textView_showNotes);
-        Bundle args = getArguments();
-        args.getString("info");
-
-        details.setText(args.toString());
+        Bundle bundle = getArguments();
+        Log.e(TAG, bundle.toString());
+        bundle.getString("info");
+        String text = bundle.toString();
+        Log.e(TAG, "bundle converted to string and stored in text ");
+        details.setText(text);
         return view;
     }
 
