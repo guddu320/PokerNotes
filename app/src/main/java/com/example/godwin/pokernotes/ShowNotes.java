@@ -26,8 +26,7 @@ public class ShowNotes extends Fragment
         details = (TextView)view.findViewById(R.id.textView_showNotes);
         Bundle bundle = getArguments();
         Log.e(TAG, bundle.toString());
-        bundle.getString("info");
-        String text = bundle.toString();
+        String text = bundle.getString("info");
         Log.e(TAG, "bundle converted to string and stored in text ");
         details.setText(text);
         return view;
