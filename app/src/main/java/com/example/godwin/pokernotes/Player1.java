@@ -118,8 +118,8 @@ public class Player1 extends Fragment {
                     buffer.append("Player :" + res.getString(1) + "\n");
                     buffer.append("Day :" + res.getString(2) + "\n");
                     buffer.append("Date :" + res.getString(3) + "\n");
-                    buffer.append("Time :" + res.getInt(4) + "\n");
-                    buffer.append("Notes :" + res.getInt(5) + "\n\n");
+                    buffer.append("Time :" + res.getString(4) + "\n");
+                    buffer.append("Notes :" + res.getString(5) + "\n\n");
                 }
 
                 showMessage("Data", buffer.toString());
