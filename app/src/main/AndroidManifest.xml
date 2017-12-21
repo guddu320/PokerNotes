@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Player1" />
-        <activity android:name=".ViewFragment"></activity>
+        <activity android:name=".ViewFragment" />
+        <activity android:name=".ShowNotes"></activity>
     </application>
 
 </manifest>

@@ -2,6 +2,8 @@ package com.example.godwin.pokernotes;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -112,6 +114,26 @@ public class Player1 extends Fragment {
                     return;
                 }
 
+                String buffer = new String();
+                while (res.moveToNext()) {
+                    buffer.concat("Entry number :" + res.getString(0) + "\n");
+                    buffer.concat("Player :" + res.getString(1) + "\n");
+                    buffer.concat("Day :" + res.getString(2) + "\n");
+                    buffer.concat("Date :" + res.getString(3) + "\n");
+                    buffer.concat("Time :" + res.getString(4) + "\n");
+                    buffer.concat("Notes :" + res.getString(5) + "\n\n");
+                }
+                Bundle bundle = new Bundle();
+                bundle.putString("Info", buffer);
+                ShowNotes fragment = new ShowNotes();
+                fragment.setArguments(bundle);
+                loadFragment(fragment);
+
+                /*if (res.getCount() == 0) {
+                    showMessage("Error", "Nothing found");
+                    return;
+                }
+
                 StringBuffer buffer = new StringBuffer();
                 while (res.moveToNext()) {
                     buffer.append("Entry number :" + res.getString(0) + "\n");
@@ -122,9 +144,19 @@ public class Player1 extends Fragment {
                     buffer.append("Notes :" + res.getString(5) + "\n\n");
                 }
 
-                showMessage("Data", buffer.toString());
+                showMessage("Data", buffer.toString());*/
             }
         });
+    }
+
+    private void loadFragment(Fragment fragment) {
+        // create a FragmentManager
+        FragmentManager fm = getFragmentManager();
+        // create a FragmentTransaction to begin the transaction and replace the Fragment
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        // replace the FrameLayout with new Fragment
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.commit(); // save the changes
     }
 
     public void showMessage(String title, String Message) {
