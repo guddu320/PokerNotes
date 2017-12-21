@@ -24,7 +24,8 @@ public class Storage extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + "(ENTRYNUMBER INTEGER PRIMARY KEY AUTOINCREMENT, PLAYER TEXT ,DAY TEXT, DATE TEXT,TIME TEXT, NOTES TEXT)");
+        db.execSQL("create table " + TABLE_NAME + "(ENTRYNUMBER INTEGER PRIMARY KEY AUTOINCREMENT, PLAYER TEXT ,DAY TEXT, " +
+                " DATE TEXT, TIME TEXT, NOTES TEXT)");
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -44,6 +45,12 @@ public class Storage extends SQLiteOpenHelper {
         if (result == -1) return false;
         else return true;
     }
+
+    public void deleteAllRecords(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME);
+    }
+
 
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
