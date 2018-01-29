@@ -254,6 +254,8 @@ public class MainActivity extends AppCompatActivity {
                                 }
         );
 
+
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -333,6 +335,7 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog alert = altDial.create();
                 alert.setTitle("Alert!");
                 alert.show();
+                finish();
 
             }
         });
@@ -382,6 +385,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void loadFragment(Fragment fragment) {
         FragmentManager fm = getFragmentManager();

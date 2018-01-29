@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -26,10 +27,9 @@ import static android.content.ContentValues.TAG;
 public class Player1 extends Fragment {
     View view;
     TextView day, date, time;
-    Button save, viewDetails;
+    Button save, viewDetails, back;
     EditText entry;
     Storage myDb;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,8 +90,36 @@ public class Player1 extends Fragment {
 
         save = (Button) view.findViewById(R.id.button_save1);
         viewDetails = (Button) view.findViewById(R.id.button_view1);
+        back = getActivity().findViewById(R.id.button_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder altDial= new AlertDialog.Builder(getActivity());
+                altDial.setMessage("Do you wish to save?").setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                boolean isInserted = myDb.insertData("Player 1", day.getText().toString(), date.getText().toString(), time.getText().toString(), entry.getText().toString());
+                                if (isInserted == true)
+                                    Toast.makeText(getActivity().getApplicationContext(), "Entry was saved", Toast.LENGTH_LONG).show();
+                                else
+                                    Toast.makeText(getActivity().getApplicationContext(), "Save failed", Toast.LENGTH_LONG).show();
+                                getActivity().finish();
 
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                AlertDialog alert = altDial.create();
+                alert.setTitle("Alert!");
+                alert.show();
 
+            }
+        });
 
         AddData();
         viewAll();

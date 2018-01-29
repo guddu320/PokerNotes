@@ -34,7 +34,7 @@ public class Profile extends Fragment {
         String pass = password.getText().toString();
         String rpass = rePassword.getText().toString();
 
-
+        //Profile information saved as SharedPreferences to be used later in Email
         saveProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

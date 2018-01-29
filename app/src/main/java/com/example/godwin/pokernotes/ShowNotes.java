@@ -31,18 +31,13 @@ public class ShowNotes extends Fragment
         view = inflater.inflate(R.layout.activity_show_notes, container, false);
         details = (TextView)view.findViewById(R.id.textView_showNotes);
         Bundle bundle = getArguments();
-        /*final ArrayList<String> result = bundle.getStringArrayList("info");*/
         final String text = bundle.getString("Info");
         Log.e(TAG, text.substring(24,32) );
         details.setText(text);
-        /*for(int i=0;i<result.size();i++){
-            details.setText(result.get(i)+"\n");
-            if(i%5==0){
-                details.setText("\n");
-            }
-        }*/
+
 
         back = (Button)view.findViewById(R.id.button_backToPlayer);
+        //code to take the user back to the calling fragment from the showNotes screen
         back.setOnClickListener(new View.OnClickListener()
                                    {
                                        @Override
@@ -99,16 +94,5 @@ public class ShowNotes extends Fragment
         );
         return view;
     }
-
-    private void loadFragment(Fragment fragment) {
-        // create a FragmentManager
-        FragmentManager fm = getFragmentManager();
-        // create a FragmentTransaction to begin the transaction and replace the Fragment
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        // replace the FrameLayout with new Fragment
-        fragmentTransaction.replace(R.id.frameLayout, fragment);
-        fragmentTransaction.commit(); // save the changes
-    }
-
 
 }
