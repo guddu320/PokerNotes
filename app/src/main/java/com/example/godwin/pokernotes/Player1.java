@@ -4,10 +4,12 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -33,6 +35,7 @@ public class Player1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.activity_player1, container, false);
         myDb = new Storage(getActivity());
 
@@ -87,6 +90,9 @@ public class Player1 extends Fragment {
 
         save = (Button) view.findViewById(R.id.button_save1);
         viewDetails = (Button) view.findViewById(R.id.button_view1);
+
+
+
         AddData();
         viewAll();
 
@@ -100,9 +106,9 @@ public class Player1 extends Fragment {
 
                 boolean isInserted = myDb.insertData("Player 1", day.getText().toString(), date.getText().toString(), time.getText().toString(), entry.getText().toString());
                 if (isInserted == true)
-                    Toast.makeText(getActivity().getApplicationContext(), "Data Inserted", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Entry was saved", Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(getActivity().getApplicationContext(), "Data not Inserted", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Save failed", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -137,6 +143,28 @@ public class Player1 extends Fragment {
             }
         });
     }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if (id == R.id.saveEntry) {
+            boolean isInserted = myDb.insertData("Player 1", day.getText().toString(), date.getText().toString(), time.getText().toString(), entry.getText().toString());
+            if (isInserted == true)
+                Toast.makeText(getActivity().getApplicationContext(), "Entry was saved", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(getActivity().getApplicationContext(), "Save failed", Toast.LENGTH_LONG).show();
+        }
+        else if(id ==R.id.sendEntry){
+            return false;
+        }
+        else if(id == R.id.profile){
+            return false;
+        }
+
+        return false;
+
+    }
+
+
 
     private void loadFragment(Fragment fragment) {
         // create a FragmentManager

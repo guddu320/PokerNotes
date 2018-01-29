@@ -4,10 +4,12 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -31,6 +33,7 @@ public class Player2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.activity_player2, container, false);
         myDb = new Storage(getActivity());
@@ -86,6 +89,14 @@ public class Player2 extends Fragment {
 
         save = (Button) view.findViewById(R.id.button_save2);
         viewDetails = (Button) view.findViewById(R.id.button_view2);
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("Save Entry",0);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString( "Player", "Player 2");
+        editor.putString( "Day", day.getText().toString());
+        editor.putString( "Date", date.getText().toString());
+        editor.putString( "Time", time.getText().toString());
+        editor.putString( "Entry", entry.getText().toString());
+        editor.commit();
         AddData();
         viewAll();
 
@@ -150,6 +161,27 @@ public class Player2 extends Fragment {
             }
         });
     }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if (id == R.id.saveEntry) {
+            boolean isInserted = myDb.insertData("Player 2", day.getText().toString(), date.getText().toString(), time.getText().toString(), entry.getText().toString());
+            if (isInserted == true)
+                Toast.makeText(getActivity().getApplicationContext(), "Entry was saved", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(getActivity().getApplicationContext(), "Save failed", Toast.LENGTH_LONG).show();
+        }
+        else if(id ==R.id.sendEntry){
+            return false;
+        }
+        else if(id == R.id.profile){
+            return false;
+        }
+
+        return false;
+
+    }
+
 
     private void loadFragment(Fragment fragment) {
         // create a FragmentManager

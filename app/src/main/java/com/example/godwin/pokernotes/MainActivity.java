@@ -265,9 +265,20 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.saveEntry) {
+
+           /* SharedPreferences pref = getApplicationContext().getSharedPreferences("Save Entry", 0);
+            String player = pref.getString("Player",null);
+            String day = pref.getString("Day",null);
+            String date = pref.getString("Date",null);
+            String time = pref.getString("Time",null);
+            String entry = pref.getString("Entry",null);
             Storage myDb = new Storage(this);
-            myDb.deleteAllRecords();
-            return true;
+            boolean isInserted = myDb.insertData(player, day, date, time, entry);
+            if (isInserted == true)
+                Toast.makeText(this.getApplicationContext(), "Entry was saved + "+entry, Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(this.getApplicationContext(), "Save failed", Toast.LENGTH_LONG).show();*/
+            return false;
         } else if (id == R.id.sendEntry) {
 
             AlertDialog.Builder altDial= new AlertDialog.Builder(MainActivity.this);

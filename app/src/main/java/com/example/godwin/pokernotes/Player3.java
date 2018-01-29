@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -31,6 +32,7 @@ public class Player3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.activity_player3, container, false);
         myDb = new Storage(getActivity());
@@ -150,6 +152,27 @@ public class Player3 extends Fragment {
             }
         });
     }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if (id == R.id.saveEntry) {
+            boolean isInserted = myDb.insertData("Player 3", day.getText().toString(), date.getText().toString(), time.getText().toString(), entry.getText().toString());
+            if (isInserted == true)
+                Toast.makeText(getActivity().getApplicationContext(), "Entry was saved", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(getActivity().getApplicationContext(), "Save failed", Toast.LENGTH_LONG).show();
+        }
+        else if(id ==R.id.sendEntry){
+            return false;
+        }
+        else if(id == R.id.profile){
+            return false;
+        }
+
+        return false;
+
+    }
+
 
     private void loadFragment(Fragment fragment) {
         // create a FragmentManager
