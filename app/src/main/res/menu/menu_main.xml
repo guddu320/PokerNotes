@@ -13,4 +13,9 @@
         android:orderInCategory="101"
         app:showAsAction="never"
         android:title="Save All Entries"/>
+    <item
+        android:id="@+id/profile"
+        android:orderInCategory="101"
+        app:showAsAction="never"
+        android:title="Profiles"/>
 </menu>

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import static android.content.ContentValues.TAG;
@@ -132,22 +133,7 @@ public class Player1 extends Fragment {
                 fragment.setArguments(bundle);
                 loadFragment(fragment);
 
-                /*if (res.getCount() == 0) {
-                    showMessage("Error", "Nothing found");
-                    return;
-                }
 
-                StringBuffer buffer = new StringBuffer();
-                while (res.moveToNext()) {
-                    buffer.append("Entry number :" + res.getString(0) + "\n");
-                    buffer.append("Player :" + res.getString(1) + "\n");
-                    buffer.append("Day :" + res.getString(2) + "\n");
-                    buffer.append("Date :" + res.getString(3) + "\n");
-                    buffer.append("Time :" + res.getString(4) + "\n");
-                    buffer.append("Notes :" + res.getString(5) + "\n\n");
-                }
-
-                showMessage("Data", buffer.toString());*/
             }
         });
     }

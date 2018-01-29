@@ -20,7 +20,7 @@ import java.util.Calendar;
 
 import static android.content.ContentValues.TAG;
 
-public class Player2 extends Fragment {
+public class Player5 extends Fragment {
     View view;
     TextView day, date, time;
     Button save, viewDetails;
@@ -32,13 +32,13 @@ public class Player2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.activity_player2, container, false);
+        view = inflater.inflate(R.layout.activity_player5, container, false);
         myDb = new Storage(getActivity());
 
-        day = (TextView) view.findViewById(R.id.textView_Day2);
-        date = (TextView) view.findViewById(R.id.textView_date2);
-        time = (TextView) view.findViewById(R.id.textView_time2);
-        entry = (EditText) view.findViewById(R.id.editText_entry2);
+        day = (TextView) view.findViewById(R.id.textView_Day5);
+        date = (TextView) view.findViewById(R.id.textView_date5);
+        time = (TextView) view.findViewById(R.id.textView_time5);
+        entry = (EditText) view.findViewById(R.id.editText_entry5);
 
         Calendar calendar = Calendar.getInstance();
         int x = calendar.get(Calendar.DAY_OF_WEEK);
@@ -84,8 +84,8 @@ public class Player2 extends Fragment {
         }
         time.setText(formattedTime);
 
-        save = (Button) view.findViewById(R.id.button_save2);
-        viewDetails = (Button) view.findViewById(R.id.button_view2);
+        save = (Button) view.findViewById(R.id.button_save5);
+        viewDetails = (Button) view.findViewById(R.id.button_view5);
         AddData();
         viewAll();
 
@@ -97,7 +97,7 @@ public class Player2 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                boolean isInserted = myDb.insertData("Player 2", day.getText().toString(), date.getText().toString(), time.getText().toString(), entry.getText().toString());
+                boolean isInserted = myDb.insertData("Player 5", day.getText().toString(), date.getText().toString(), time.getText().toString(), entry.getText().toString());
                 if (isInserted == true)
                     Toast.makeText(getActivity().getApplicationContext(), "Data Inserted", Toast.LENGTH_LONG).show();
                 else
@@ -116,7 +116,7 @@ public class Player2 extends Fragment {
                     return;
                 }
                 String buffer = new String();
-                while (res.moveToNext()) if(res.getString(1).equals("Player 2")) {
+                while (res.moveToNext()) if(res.getString(1).equals("Player 5")) {
                     buffer += "Entry number :" + res.getString(0) + "\n";
                     buffer += "Player :" + res.getString(1) + "\n";
                     buffer += "Day :" + res.getString(2) + "\n";
@@ -124,7 +124,7 @@ public class Player2 extends Fragment {
                     buffer += "Time :" + res.getString(4) + "\n";
                     buffer += "Notes :" + res.getString(5) + "\n\n";
                 }
-
+                Log.e(TAG, "String process ended\n"+buffer );
                 Bundle bundle = new Bundle();
                 bundle.putString("Info", buffer);
                 ShowNotes fragment = new ShowNotes();

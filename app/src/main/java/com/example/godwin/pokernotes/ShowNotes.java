@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import static android.content.ContentValues.TAG;
 
 public class ShowNotes extends Fragment
@@ -29,9 +31,16 @@ public class ShowNotes extends Fragment
         view = inflater.inflate(R.layout.activity_show_notes, container, false);
         details = (TextView)view.findViewById(R.id.textView_showNotes);
         Bundle bundle = getArguments();
+        /*final ArrayList<String> result = bundle.getStringArrayList("info");*/
         final String text = bundle.getString("Info");
         Log.e(TAG, text.substring(24,32) );
         details.setText(text);
+        /*for(int i=0;i<result.size();i++){
+            details.setText(result.get(i)+"\n");
+            if(i%5==0){
+                details.setText("\n");
+            }
+        }*/
 
         back = (Button)view.findViewById(R.id.button_backToPlayer);
         back.setOnClickListener(new View.OnClickListener()
@@ -55,6 +64,33 @@ public class ShowNotes extends Fragment
                                                FragmentTransaction fragmentTransaction = fm.beginTransaction();
                                                // replace the FrameLayout with new Fragment
                                                fragmentTransaction.replace(R.id.frameLayout, player2, "2");
+                                               fragmentTransaction.commit(); // save the changes
+                                           }
+                                           else if(text.substring(24,32).equals("Player 3")){
+                                               Player3 player3 = new Player3();
+                                               FragmentManager fm = getFragmentManager();
+                                               // create a FragmentTransaction to begin the transaction and replace the Fragment
+                                               FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                                               // replace the FrameLayout with new Fragment
+                                               fragmentTransaction.replace(R.id.frameLayout, player3, "3");
+                                               fragmentTransaction.commit(); // save the changes
+                                           }
+                                           else if(text.substring(24,32).equals("Player 4")){
+                                               Player4 player4 = new Player4();
+                                               FragmentManager fm = getFragmentManager();
+                                               // create a FragmentTransaction to begin the transaction and replace the Fragment
+                                               FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                                               // replace the FrameLayout with new Fragment
+                                               fragmentTransaction.replace(R.id.frameLayout, player4, "4");
+                                               fragmentTransaction.commit(); // save the changes
+                                           }
+                                           else if(text.substring(24,32).equals("Player 5")){
+                                               Player5 player5 = new Player5();
+                                               FragmentManager fm = getFragmentManager();
+                                               // create a FragmentTransaction to begin the transaction and replace the Fragment
+                                               FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                                               // replace the FrameLayout with new Fragment
+                                               fragmentTransaction.replace(R.id.frameLayout, player5, "5");
                                                fragmentTransaction.commit(); // save the changes
                                            }
 
